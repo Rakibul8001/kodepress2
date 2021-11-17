@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
+class CreateWidgetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('widgets', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug');
-            $table->integer('parent_id')->unsigned()->default(0);
-            $table->string('image')->default('default.png');
-            $table->string('decs')->nullable();
-            $table->foreignId('sidebar_id');
-            $table->boolean('status')->default(true);
+            $table->text('widget_content');
+            $table->boolean('status');
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('widgets');
     }
 }
